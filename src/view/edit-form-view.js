@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { POINTS_TYPE, DATE_FORMAT, humanizeTaskDueDate, capitalize } from '../utils.js';
 
 function createTypeTemplate(type) {
@@ -151,26 +151,17 @@ function createEditFormTemplate(point, offers, checkedOffers, destination) {
 `;
 }
 
-export default class EditForm {
-  constructor({point, offers, checkedOffers, destination}) {
+export default class EditForm extends AbstractView {
+  constructor({ point, offers, checkedOffers, destination }) {
+    super();
     this.point = point;
     this.offers = offers;
     this.checkedOffers = checkedOffers;
     this.destination = destination;
   }
 
-  getTemplate() {
+  get template() {
     return createEditFormTemplate(this.point, this.offers, this.checkedOffers, this.destination);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
 }

@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import {getDifferenceInTime, humanizeTaskDueDate, DATE_FORMAT } from '../utils.js';
 
 function createOfferTemplate ({title, price}) {
@@ -54,25 +54,15 @@ function createTripPointsTemplate(point, offers, destination) {
   `);
 }
 
-export default class TripPointForm {
+export default class TripPointForm extends AbstractView {
   constructor({ point, offers, destination }) {
+    super();
     this.point = point;
     this.offers = offers;
     this.destination = destination;
   }
 
-  getTemplate() {
+  get template() {
     return createTripPointsTemplate(this.point, this.offers, this.destination);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }
