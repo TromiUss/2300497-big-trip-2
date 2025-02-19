@@ -31,7 +31,6 @@ export default class TaskModel {
     return offersType.offers.filter((item) => itemsId.includes(item.id));
   }
 
-
   get Destination() {
     return this.#destination;
   }
