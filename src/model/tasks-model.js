@@ -6,16 +6,16 @@ import { getRandomPoints } from '../mock/points.js';
 const POINT_COUNT = 3;
 
 export default class TaskModel {
-  point = Array.from({length: POINT_COUNT}, getRandomPoints);
-  offers = offers;
-  destination = destinations;
+  #point = Array.from({length: POINT_COUNT}, getRandomPoints);
+  #offers = offers;
+  #destination = destinations;
 
-  getPoint() {
-    return this.point;
+  get Point() {
+    return this.#point;
   }
 
-  getOffer () {
-    return this.offers;
+  get Offer () {
+    return this.#offers;
   }
 
   getOfferByType(type) {
@@ -30,10 +30,10 @@ export default class TaskModel {
     }
     return offersType.offers.filter((item) => itemsId.includes(item.id));
   }
-  
 
-  getDestination() {
-    return this.destination;
+
+  get Destination() {
+    return this.#destination;
   }
 
   getDestinationById(id) {
